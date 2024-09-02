@@ -1,0 +1,26 @@
+{
+  "name": "reto-rimac-serverless-api",
+  "version": "1.0.0",
+  "description": "API para integrar datos de Star Wars y almacenarlos en DynamoDB usando Serverless Framework",
+  "main": "index.js",
+  "scripts": {
+    "start": "serverless offline start",
+    "test": "mocha -r ts-node/register 'test/**/*.test.ts'"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1687.0",
+    "axios": "^1.7.7",
+    "chai": "^5.1.1",
+    "mocha": "^10.7.3",
+    "path": "^0.12.7",
+    "reto-rimac-serverless-api": "file:",
+    "sinon": "^18.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.2.0",
+    "serverless": "^3.29.1",
+    "serverless-offline": "^13.8.0",
+    "sinon": "^15.0.0"
+  }
+}

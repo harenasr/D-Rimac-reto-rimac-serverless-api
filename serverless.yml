@@ -1,0 +1,57 @@
+service: reto-rimac-serverless-api
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: arn:aws:dynamodb:us-east-1:607262805114:table/PeopleTable
+
+functions:
+  savePeople:
+    handler: src/handlers/peopleHandler.savePeople
+    events:
+      - http:
+          path: people
+          method: post
+          cors: true
+  getPeople:
+    handler: src/handlers/peopleHandler.getPeople
+    events:
+      - http:
+          path: people
+          method: get
+          cors: true
+  swaggerDocs:
+    handler: src/handlers/swaggerDocsHandler.swaggerDocs
+    events:
+      - http:
+          path: docs
+          method: get
+          cors: false
+
+plugins:
+  - serverless-offline
+
+resources:
+  Resources:
+    PeopleTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: PeopleTable
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5

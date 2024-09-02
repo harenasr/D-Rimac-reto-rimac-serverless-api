@@ -1,0 +1,23 @@
+openapi: 3.0.0
+info:
+  title: My API
+  description: API documentation
+  version: 1.0.0
+paths:
+  /people:
+    get:
+      summary: "Obtener todas las personas"
+      description: "Obtiene una lista de todas las personas almacenadas en la base de datos."
+      responses:
+        200:
+          description: "Lista de personas."
+        500:
+          description: "Error al obtener la lista de personas."
+    post:
+      summary: "Guardar una nueva persona"
+      description: "Guarda la información de una nueva persona en la base de datos."
+      responses:
+        200:
+          description: "Persona guardada exitosamente."
+        500:
+          description: "Error al guardar la persona."
